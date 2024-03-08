@@ -18,7 +18,7 @@ def check_info(info):
 # Página inicial
 @app.route('/')
 def pag():
-    return 'Vá á rota /index.html'
+    return 'Vá á rota /index.html. Falta fazer : Accessing Request Data etc.'
 
 # Página de projectos
 @app.route('/projects/')
