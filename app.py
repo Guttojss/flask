@@ -1,5 +1,4 @@
-
-from flask import Flask, request,url_for,render_template
+from flask import Flask, request,url_for,render_template,redirect
 from markupsafe import escape
 # app 
 app = Flask(__name__,static_folder='static',static_url_path='')
@@ -16,7 +15,7 @@ def check_info(info):
         return show_info()
 
 # Página inicial
-@app.route('/')
+@app.route('/') 
 def pag():
     return 'Vá á rota /index.html. Falta fazer : Accessing Request Data etc.'
 
@@ -62,4 +61,23 @@ def show_subpath(subpath):
 def login(info):
     if request.method == 'GET':
         return check_info(info)
-        
+
+with app.test_request_context('/hello', method='POST'):
+    # now you can do something with the request until the
+    # end of the with block, such as basic assertions:
+    assert request.path == '/hello'
+    assert request.method == 'POST'
+
+'''
+@app.route('/upload',methods=['GET','POST'])
+def upload_file():
+    if request.method == 'POST':
+        file = request.files['note.txt']
+        file.save("note.txt")
+'''
+
+@app.route('/')
+def index():
+    username = request.cookies.get('username')
+    return redirect('static/index.html') #Não Funciona
+'''Aparece uma coisa na Consola qnd se dá F5'''
