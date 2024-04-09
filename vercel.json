@@ -1,5 +1,0 @@
-{
-    "redirects": [
-      { "source": "/", "destination": "../templates/index.html", "permanent": true }
-    ]
-  }
